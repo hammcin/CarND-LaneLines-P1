@@ -69,9 +69,12 @@ White Car Lane Switch:
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ...
+One potential shortcoming of my pipeline is that lane lines that are not solid do not have enough sample points in the
+image to extrapolate well.  In this case, the predicted lane line intersects the actual lane line; but usually, the
+slope is either too steep or not steep enough.
 
-Another shortcoming could be ...
+Another shortcoming could be the way the pipeline handles curved roads.  The images the pipeline handles well are straight
+sections of road.  The lane lines of roads with more curvature would not be predicted well by the Hough Transform for lines.
 
 
 ### 3. Suggest possible improvements to your pipeline
