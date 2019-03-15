@@ -79,6 +79,8 @@ sections of road.  The lane lines of roads with more curvature would not be pred
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+A possible improvement may be to use the median line as a prediction instead of the average.  The RANSAC algorithm would
+also be an effective approach to filter out the influence of outliers.
 
-Another potential improvement could be to ...
+Another potential improvement could be to average the predicted lines from consecutive frames of video using a higher
+weight for more current video frames in time and lower weights for older video frames.
