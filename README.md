@@ -17,6 +17,11 @@ The goals / steps of this project are the following:
 [image4]: ./test_images_output/solidYellowCurveOutput.jpg "Solid Yellow Curve 1"
 [image5]: ./test_images_output/solidYellowLeftOutput.jpg "Solid Yellow Left"
 [image6]: ./test_images_output/whiteCarLaneSwitchOutput.jpg "White Car Lane Switch"
+[image7]: ./Figures/grayscale.jpg "Grayscale"
+[image8]: ./Figures/canny.jpg "Canny Edge Detection"
+[image9]: ./Figures/roi_mask.jpg "Region of Interest Mask"
+[image10]: ./Figures/hough.jpg "Hough Transform"
+[image11]: ./Figures/average.jpg "Averaging"
 
 ---
 
@@ -24,20 +29,32 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 4 steps. First, I converted the images to grayscale. Then I applied a Gaussian filter to the
-grayscale image and I performed Canny edge detection.  For Canny edge detection, I used a low threshold of 50 and a high
-threshold of 150.  Following edge detection, I applied a region of interest mask using a trapezoidal shape.  This step
-was followed by application of the Hough Transform.  The parameters I used for the Hough Transform were as follows:
-distance resolution of 1 pixel, angular resolution of 1 degree (converted to radians), a minimum number of votes of 35,
-a minimum of 25 pixels making up a line, and a maximum gap between connected line segments of 25 pixels.  Additionally,
+My pipeline consisted of 4 steps.
+
+First, I converted the images to grayscale.
+
+![alt text][image7]
+
+Then I applied a Gaussian filter to the grayscale image and I performed Canny edge detection.
+
+![alt text][image8]
+
+For Canny edge detection, I used a low threshold of 50 and a high threshold of 150.
+
+Following edge detection, I applied a region of interest mask using a trapezoidal shape.
+
+![alt text][image9]
+
+This step was followed by application of the Hough Transform.
+
+![alt text][image10]
+
+The parameters I used for the Hough Transform were as follows: distance resolution of 1 pixel, angular resolution of 1 degree (converted to radians), a minimum number of votes of 35, a minimum of 25 pixels making up a line, and a maximum gap between connected line segments of 25 pixels.  Additionally,
 I decided to apply the Hough Transform to the left and right halves of the image separately.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by averaging the the
-lines detected by the Hough Transform.  I did this by taking each pair of points defining a line detected by the Hough
-Transform and I calculated the slope and y-intercept of that line.  I then averaged those slopes and y-intercepts
-together to define one line.  Following this, I calculated the points on this line that fell inside the masked image
-region I defined.  I then extracted two points to represent this line by finding the points with the maximum and
-minimum y-values.  The draw_lines() function then drew this line.
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by averaging the lines detected by the Hough Transform.  I did this by taking each pair of points defining a line detected by the Hough Transform and I calculated the slope and y-intercept of that line.  I then averaged those slopes and y-intercepts together to define one line.  Following this, I calculated the points on this line that fell inside the masked image region I defined.  I then extracted two points to represent this line by finding the points with the maximum and minimum y-values.  The draw_lines() function then drew this line.
+
+![alt text][image11]
 
 To demonstrate the performance of my pipeline, I ran my pipeline on the test images.  The results are shown below.
 
@@ -64,6 +81,16 @@ Solid Yellow Left:
 White Car Lane Switch:
 
 ![alt text][image6]
+
+I also ran my pipeline on the test videos.
+
+Solid White Right:
+
+Here's a [link to my video result](./test_videos_output/solidWhiteRight.mp4).
+
+Solid Yellow Left:
+
+Here's a [link to my video result](./test_videos_output/solidYellowLeft.mp4).
 
 
 ### 2. Identify potential shortcomings with your current pipeline
